@@ -4,10 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link id="site-style" rel="stylesheet" href="css/style.css">
     <link rel="icon" href="srcFile\img\favicon.ico">
     <title>ぴたゲー</title>
     <meta name="description"  content="時間で遊ぶゲームです。">
+
+    <script>
+        function getDomain() {
+            return window.location.hostname;
+        }
+        function checkDomainAndApplyChanges() {
+            var domain = getDomain();
+            var linkElement = document.getElementById("site-style");
+            if (domain !== "manpuc.github.io") {
+                const whiteNoise = new Audio('srcFile/audio/whiteNoise.wav');
+                whiteNoise.play();
+                linkElement.href = "css/copyStyle.css";
+                var errorMessage = document.createElement("h1");
+                errorMessage.textContent = "このサイトは複製されています。";
+                document.body.appendChild(errorMessage);
+                // 追加のメッセージを表示する<p>タグ
+                var additionalMessage = document.createElement("p");
+                additionalMessage.textContent = "予期せぬ動作が起こる可能性があります。";
+                document.body.appendChild(additionalMessage);
+
+                // ドメインが"127.0.0.1"以外の場合にビデオを追加する
+                var videoElement = document.createElement("video");
+                videoElement.id = "videoNoise";
+                videoElement.src = "css/img/videoNoise.mp4";
+                videoElement.loop = true;
+                videoElement.autoplay = true;
+                document.body.appendChild(videoElement);
+            } else {
+                linkElement.href = "css/style.css";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", checkDomainAndApplyChanges);
+    </script>
 <!-- header -->
     <div class="header"></div>
 <!-- main -->
@@ -64,7 +99,7 @@
             <p id="sec" style="color: #fff;"></p>
         </div>
         <div class="versionMark">
-            <p>Var.1.4.1</p>
+            <p>Var.1.5.1</p>
         </div>
     </div>
     
